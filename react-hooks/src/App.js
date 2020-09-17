@@ -1,21 +1,18 @@
 import React from 'react';
+import useLocalStorage from './hooks/useLocalStorage';
+import useUpdateLogger from './hooks/useUpdateLogger';
 
 function App() {
+  const [name, setName] = useLocalStorage('name', '')
+  useUpdateLogger('name', name)
+
   return (
     <div className="App">
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <input 
+        type="text"
+        value={name}
+        onChange={event => setName(event.target.value)}
+      />      
     </div>
   );
 }
